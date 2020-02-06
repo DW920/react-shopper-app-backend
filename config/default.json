@@ -1,0 +1,5 @@
+{
+  "api": {
+    "database": "http://localhost:6000"
+  }
+}
