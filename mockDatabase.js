@@ -31,6 +31,9 @@ const MockDatabase = (desiredPort) => {
         username: 'hckeeling',
       }, 
     },
+    balance: {
+      hkeeling: 5000
+    },
   };
 
   app.get('/:table/:key', (req, res) => {

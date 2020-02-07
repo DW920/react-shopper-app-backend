@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const cartRouter = require('./cart');
 const userRouter = require('./users');
+const balanceRouter = require('./balance');
 const authController = require('../controllers/auth');
 
 const router = Router();
@@ -21,6 +22,8 @@ router.post('/login', authController.login);
  * Namespaced router for cart routes
  */
 router.use('/cart', cartRouter);
+
+router.use('/balance', balanceRouter);
 
 /**
  * Namespaced router so all routes in the userRouter will fall under the namespace

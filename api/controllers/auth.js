@@ -20,10 +20,11 @@ const login = async (req, res) => {
        * hashed passwords (or in our case unhashed passwords!!)
        */
       const userDetails = pick(user, ['name', 'username']);
-      // const authToken = jwt.createToken({ username });
+      const authToken = jwt.createToken({ username });
+     
       // sess = req.session;
       // sess.token = authToken;
-      res.status(200).json(userDetails);
+      res.cookie('session', authToken).status(200).json(userDetails);
     })
     .catch(() => res.sendStatus(401));
 };
