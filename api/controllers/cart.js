@@ -9,13 +9,14 @@ const cartService = require('../services/cart');
  * @returns {Promise<void>}
  */
 const addItems = async (req, res) => {
-  const { user: { username }, body: { items: newItems } } = req;
+  const { user: { username }, body: { itemInfo: newItems }, body } = req;
+  console.log('body', body)
   debug('Adding', newItems, 'to the cart for user', username);
   const currentItems = await cartService.getCart(username)
     .then((cartData) => cartData)
     .catch(() => ([]));
 
-  const formattedItems = newItems.map(({ name, cost }) => ({ name, cost: Number(cost) }));
+  const formattedItems = [newItems].map(({ name, cost }) => ({ name, cost: Number(cost) }));
   const desiredCartItems = currentItems.concat(formattedItems);
   await cartService.setItems({ username, items: desiredCartItems });
 
