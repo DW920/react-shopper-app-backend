@@ -12,6 +12,7 @@ const debug = require('debug')('app:middleware:errors');
  * @param next
  */
 const errorLogger = (err, req, res, next) => {
+  console.log('dafsdfasdf')
   if (err) {
     debug(err);
     /* Generally exposing the entire error message is a bad idea...

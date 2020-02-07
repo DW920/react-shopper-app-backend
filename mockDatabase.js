@@ -29,7 +29,7 @@ const MockDatabase = (desiredPort) => {
         },
         password: 'notHashedPassword!',
         username: 'hckeeling',
-      },
+      }, 
     },
   };
 

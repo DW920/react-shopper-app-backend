@@ -13,6 +13,7 @@ const userService = require('../services/users');
  */
 const authentication = async (req, res, next) => {
   const { cookies: { session } } = req;
+  console.log('authentication request', req);
   try {
     const { username } = jwt.verifyToken(session);
 
