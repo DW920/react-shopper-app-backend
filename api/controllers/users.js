@@ -21,9 +21,8 @@ const currentUser = (req, res) => {
 const createUser = async (req, res, next) => {
   const { body: { firstName, lastName, username } } = req;
   if (!firstName || !lastName) {
-    next(Error(`Missing ${!firstName ? 'first' : 'last'} name`));
+    return next(Error(`Missing ${!firstName ? 'first' : 'last'} name`));
   }
-
   await userService.createUser({
     name: {
       first: firstName,
@@ -32,12 +31,18 @@ const createUser = async (req, res, next) => {
     },
     username,
   }).then((userDetails) => {
+
     const { username } = userDetails;
     const authToken = jwt.createToken({ username });
-    res
-      .cookie('session', authToken)
+    
+    // sess = req.session;
+    // sess.token = authToken; 
+    
+    res.cookie('session', authToken)
       .status(200)
-      .json(userDetails);
+      .send(userDetails);
+   
+    
   }).catch((err) => {
     next(Error(`Unable to register user at this time: ${err.toString()}`));
   });

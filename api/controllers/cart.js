@@ -31,6 +31,7 @@ const addItems = async (req, res) => {
  * @returns {Promise<void>}
  */
 const getCart = async (req, res) => {
+ 
   const { user: { username } } = req;
   const items = await cartService.getCart(username)
     .then((cartData) => cartData)

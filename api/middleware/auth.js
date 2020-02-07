@@ -13,12 +13,11 @@ const userService = require('../services/users');
  */
 const authentication = async (req, res, next) => {
   const { cookies: { session } } = req;
-  console.log('authentication request', req);
+  
   try {
+    
     const { username } = jwt.verifyToken(session);
-
     req.user = await userService.getUser(username);
-
     next();
   } catch (err) {
     // We'd want to create a new HTTP Error here with a 401 (Unauthenticated) status

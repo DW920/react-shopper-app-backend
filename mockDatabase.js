@@ -55,6 +55,7 @@ const MockDatabase = (desiredPort) => {
   app.post('/:table/:key', (req, res) => {
     const { params: { table, key }, body } = req;
     const storedTable = inMemoryDatabase[table];
+   
     if (!storedTable) {
       return res
         .status(500)

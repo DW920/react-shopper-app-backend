@@ -12,7 +12,6 @@ const debug = require('debug')('app:middleware:errors');
  * @param next
  */
 const errorLogger = (err, req, res, next) => {
-  console.log('dafsdfasdf')
   if (err) {
     debug(err);
     /* Generally exposing the entire error message is a bad idea...
@@ -20,6 +19,7 @@ const errorLogger = (err, req, res, next) => {
      * and/or some JSON the front-end can parse, then send things like the stack
      * trace and original request to a logging service.
      */
+    console.log(err);
     res.status(500).send(err.toString());
     // ... normally would do something meaningful here with it
   }
